@@ -1,4 +1,5 @@
 let $searchDesignFormContainer = $('#searchDesignFormContainer');
+const token = localStorage.getItem('token');
 if ($searchDesignFormContainer.length != 0) {
     console.log('Search design form detected in user manage submission interface. Binding event handling logic to form elements.');
     //If the jQuery object which represents the form element exists,
@@ -11,7 +12,7 @@ if ($searchDesignFormContainer.length != 0) {
         let userId = localStorage.getItem('user_id');
         axios({
                 headers: {
-                    'user': userId
+                    'Authorization': 'Bearer ' + token
                 },
                 method: 'get',
                 url: baseUrl + '/api/user/process-search-design/1/' + searchInput,
@@ -99,7 +100,7 @@ if ($searchDesignFormContainer.length != 0) {
         console.log(pageNumber);
         axios({
                 headers: {
-                    'user': userId
+                    'Authorization': 'Bearer ' + token
                 },
                 method: 'get',
                 url: baseUrl + '/api/user/process-search-design/' + pageNumber + '/' + searchInput,

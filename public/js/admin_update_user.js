@@ -1,4 +1,5 @@
 let $updateUserFormContainer = $('#updateUserFormContainer');
+const token = localStorage.getItem("token");
 if ($updateUserFormContainer.length != 0) {
     console.log('Update User form is detected. Binding event handling logic to form elements.');
     //If the jQuery object which represents the form element exists,
@@ -20,7 +21,7 @@ if ($updateUserFormContainer.length != 0) {
                 method: 'put',
                 url: baseUrl + '/api/user/',
                 data: webFormData,
-                headers: { 'Content-Type': 'multipart/form-data', 'user': userId }
+                headers: { 'Content-Type': 'multipart/form-data', 'Authorization': 'Bearer ' + token }
             })
             .then(function(response) {
                 new Noty({
@@ -58,7 +59,7 @@ if ($updateUserFormContainer.length != 0) {
         let userId = localStorage.getItem('user_id');
         axios({
                 headers: {
-                    'user': userId
+                    'Authorization': 'Bearer ' + token
                 },
                 method: 'get',
                 url: baseUrl + '/api/user/' + recordIdToSearchUserRecord,
@@ -87,6 +88,6 @@ if ($updateUserFormContainer.length != 0) {
             });
 
     } //End of getOneUser
-    //Call getOneUser function to do a GET HTTP request on an API to retrieve one user record
+    
     getOneUser();
 } //End of checking for $updateUserFormContainer jQuery object

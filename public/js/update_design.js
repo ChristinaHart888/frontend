@@ -60,10 +60,11 @@ if ($updateDesignFormContainer.length != 0) {
         let arrayData = query.split("=");
         let fileId = arrayData[1];
         console.dir('Obtained file id from URL : ', fileId);
+        const token = localStorage.getItem('token');
         let userId = localStorage.getItem('user_id');
         axios({
                 headers: {
-                    'user': userId
+                    'Authorization': 'Bearer ' + token
                 },
                 method: 'get',
                 url: baseUrl + '/api/user/design/' + fileId,
