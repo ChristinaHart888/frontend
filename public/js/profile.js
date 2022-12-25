@@ -9,14 +9,15 @@ if ($profileContainer.length != 0) {
     function getOneUser() {
 
         const baseUrl = 'http://localhost:5000';
+        const token = localStorage.getItem("token");
 
         let userId = localStorage.getItem('user_id');
         axios({
             headers: {
-             'user': userId
+             'Authorization': "Bearer " + token
             },
             method: 'get',
-            url: baseUrl + '/api/user/' + userId,
+            url: baseUrl + '/api/user/',
             })
             .then(function(response) {
                 //Using the following to inspect the response.data data structure
