@@ -1,4 +1,5 @@
 let $submitDesignFormContainer = $('#submitDesignFormContainer');
+const token = localStorage.getItem('token');
 if ($submitDesignFormContainer.length != 0) {
     console.log('Submit design form detected. Binding event handling logic to form elements.');
     //If the jQuery object which represents the form element exists,
@@ -19,7 +20,7 @@ if ($submitDesignFormContainer.length != 0) {
                 method: 'post',
                 url: baseUrl + '/api/user/process-submission',
                 data: webFormData,
-                headers: { 'Content-Type': 'multipart/form-data', 'user': userId }
+                headers: { 'Content-Type': 'multipart/form-data', 'Authorization': 'Bearer ' + token }
             })
             .then(function(response) {
                 Noty.overrideDefaults({

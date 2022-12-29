@@ -1,4 +1,5 @@
 let $manageInviteFormContainer = $('#manageInviteFormContainer');
+const token = localStorage.getItem('token');
 if ($manageInviteFormContainer.length != 0) {
     console.log('Manage invite form detected. Binding event handling logic to form elements.');
     //If the jQuery object which represents the form element exists,
@@ -17,7 +18,7 @@ if ($manageInviteFormContainer.length != 0) {
                 method: 'post',
                 url: baseUrl + '/api/user/processInvitation',
                 data: webFormData,
-                headers: { 'Content-Type': 'multipart/form-data', 'user': userId }
+                headers: { 'Content-Type': 'multipart/form-data', 'Authorization': 'Bearer ' + token }
             })
             .then(function(response) {
                 //Handle success

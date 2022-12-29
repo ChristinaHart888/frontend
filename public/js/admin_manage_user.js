@@ -1,4 +1,5 @@
 let $searchDesignFormContainer = $('#searchUserFormContainer');
+const token = localStorage.getItem('token');
 if ($searchDesignFormContainer.length != 0) {
     console.log('Search user form detected in manage user interface. Binding event handling logic to form elements.');
     //If the jQuery object which represents the form element exists,
@@ -12,7 +13,7 @@ if ($searchDesignFormContainer.length != 0) {
         axios({
                 headers: {
                     //Modify this will affect the checkUserFn.js middleware file at the backend.
-                    'user': userId
+                    'Authorization': 'Bearer ' + token
                 },
                 method: 'get',
                 url: baseUrl + '/api/user/process-search-user/1/' + searchInput,
@@ -97,7 +98,7 @@ if ($searchDesignFormContainer.length != 0) {
         console.log('Checking the button page number which raised the click event : ', pageNumber);
         axios({
                 headers: {
-                    'user': userId
+                    'Authorization': 'Bearer ' + token
                 },
                 method: 'get',
                 url: baseUrl + '/api/user/process-search-user/' + pageNumber + '/' + searchInput,

@@ -11,7 +11,7 @@ if ($searchUserFormContainer.length != 0) {
         let userId = localStorage.getItem('user_id');
         axios({
                 headers: {
-                    'user': userId
+                    'Authorization': 'Bearer ' + token
                 },
                 method: 'get',
                 url: baseUrl + '/api/user/process-search-user-design/1/' + searchInput,
@@ -98,7 +98,7 @@ if ($searchUserFormContainer.length != 0) {
         console.log(pageNumber);
         axios({
                 headers: {
-                    'user': userId
+                    'Authorization': 'Bearer ' + token
                 },
                 method: 'get',
                 url: baseUrl + '/api/user/process-search-user-design/' + pageNumber + '/' + searchInput,

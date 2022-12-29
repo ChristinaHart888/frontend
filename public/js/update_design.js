@@ -1,4 +1,5 @@
 let $updateDesignFormContainer = $('#updateDesignFormContainer');
+const token = localStorage.getItem('token');
 if ($updateDesignFormContainer.length != 0) {
     console.log('Update Design form is detected. Binding event handling logic to form elements.');
     //If the jQuery object which represents the form element exists,
@@ -24,7 +25,7 @@ if ($updateDesignFormContainer.length != 0) {
                 method: 'put',
                 url: baseUrl + '/api/user/design/',
                 data: webFormData,
-                headers: { 'Content-Type': 'multipart/form-data', 'user': userId }
+                headers: { 'Content-Type': 'multipart/form-data', 'Authorization': 'Bearer ' + token }
             })
             .then(function(response) {
                 new Noty({
