@@ -1,4 +1,5 @@
 let $searchUserFormContainer = $('#searchUserFormContainer');
+const token = localStorage.getItem('token');
 if ($searchUserFormContainer.length != 0) {
     console.log('Search user form detected in user manage submission interface. Binding event handling logic to form elements.');
     //If the jQuery object which represents the form element exists,
